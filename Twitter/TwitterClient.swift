@@ -8,6 +8,7 @@
 
 import UIKit
 import BDBOAuth1Manager
+import AFNetworking
 
 let twitterConsumerKey = "p4WOeM9qBBAtIMIhbHllqBAzz"
 let twitterConsumerSecret = "k73N9qkzAAPUzVIQi7hnJj4F6oIhbiH5qMr9tZtcK7XhyueEs3"
@@ -123,7 +124,8 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     func composeTweet (text:String?) {
-        POST("1.1/statuses/update.json?status=\(text)", parameters: nil, success: { (operation:NSURLSessionDataTask, response:AnyObject?) -> Void in
+        let urlwithPercentEscapes = text!.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+        POST("1.1/statuses/update.json?status=\(urlwithPercentEscapes)", parameters: nil, success: { (operation:NSURLSessionDataTask, response:AnyObject?) -> Void in
             print("successfuly posted tweet")
             }) { (operation:NSURLSessionDataTask?, error:NSError) -> Void in
                 print("failed to tweet")

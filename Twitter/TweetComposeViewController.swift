@@ -14,10 +14,8 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var tweetTextView: UITextView!
     @IBOutlet weak var defaultTextLabel: UILabel!
     
-    @IBAction func postTweet(sender: UIBarButtonItem) {
-        let urlwithPercentEscapes = tweetTextView.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-        print(urlwithPercentEscapes!)
-        TwitterClient.sharedInstance.composeTweet(urlwithPercentEscapes!)
+    @IBAction func postTweet(sender: UIBarButtonItem){
+        TwitterClient.sharedInstance.composeTweet(tweetTextView.text!)
     }
     var count = 140
     let limitLength = 140
