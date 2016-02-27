@@ -86,6 +86,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             let tweetdetailViewController = segue.destinationViewController as! TweetDetailsViewController
             tweetdetailViewController.tweet = tweet
         }
+        if segue.identifier == "reply" {
+            let cell = sender as! TweetCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let tweet = tweets![indexPath!.row]
+            let tweetcomposeViewController = segue.destinationViewController as! TweetComposeViewController
+            tweetcomposeViewController.replyhandle = tweet.user?.screenname
+        }
     }
 
 

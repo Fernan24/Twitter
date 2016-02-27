@@ -7,15 +7,35 @@
 //
 
 import UIKit
+import DoneHUD
+
+
 
 class TweetComposeViewController: UIViewController, UITextViewDelegate {
-
+    var replyhandle:String?
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var tweetTextView: UITextView!
     @IBOutlet weak var defaultTextLabel: UILabel!
+    @IBOutlet weak var displayNameLabel: UILabel!
     
     @IBAction func postTweet(sender: UIBarButtonItem){
-        TwitterClient.sharedInstance.composeTweet(tweetTextView.text!)
+        DoneHUD.showInView(self.view, message: "Done")
+        if replyhandle?.characters.count>0 {
+            TwitterClient.sharedInstance.replyTweet(tweetTextView.text, userID: replyhandle)
+        } else {
+            TwitterClient.sharedInstance.composeTweet(tweetTextView.text!)
+        }
+        replyhandle = ""
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            //put your code which should be executed with a delay here
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+    @IBAction func cancel(sender: AnyObject) {
+        replyhandle = ""
+        dismissViewControllerAnimated(true, completion: nil)
     }
     var count = 140
     let limitLength = 140
@@ -23,9 +43,14 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         tweetTextView.delegate = self
         tweetTextView.becomeFirstResponder()
-        //tweetTextView.clearsOnInsertion = true
+        tweetTextView.text = "@\(replyhandle!) "
+        count=limitLength - tweetTextView.text.characters.count
         countLabel.text = String(count)
-        // Do any additional setup after loading the view.
+        displayNameLabel.text = (User.currentUser?.screenname)!
+        profileImage.setImageWithURL(NSURL(string: (User.currentUser?.profileImageUrl)!)!)
+        if(count<140){
+            defaultTextLabel.hidden = true
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,6 +8,7 @@
 
 import UIKit
 var username:String?
+
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var bannerImage: UIImageView!
@@ -15,17 +16,22 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var displayNameLabel: UILabel!
     @IBOutlet weak var UsernameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    
-    var dictionary:NSDictionary?
-
+    var userdata:User?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        TwitterClient.sharedInstance.getUserData("fernan2012dj") { (user, error) -> () in
-            self.dictionary = user
+        username = "fernan2012dj"
+        TwitterClient.sharedInstance.getUserData(username) { (user, error) -> () in
+            self.userdata = user
+            //print(self.userdata)
+            self.profileImage.setImageWithURL(NSURL(string: (self.userdata?.profileImageUrl)!)!)
+            self.bannerImage.setImageWithURL(NSURL(string: (self.userdata?.bannerImageUrl)!)!)
+            self.displayNameLabel.text = (self.userdata?.name)!
+            self.UsernameLabel.text = "@\((self.userdata?.screenname)!)"
+            self.descriptionLabel.text = self.userdata?.userdescription
         }
-        print(dictionary)
+        
         
     }
 

@@ -111,25 +111,38 @@ class TwitterClient: BDBOAuth1SessionManager {
                 print("failed to unfavorited")
         }
     }
-    func getUserData(screenName:String, completion: (user: NSDictionary?, error: NSError?)-> ()) {
-        var userRepsonse:NSDictionary?
-        TwitterClient.sharedInstance.GET("1.1/users/show.json?screen_name=\(screenName)", parameters: nil, success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
+    func getUserData(screenName:String!,completion: (user: User?, error: NSError?)-> ()){
+        var userResponse:NSDictionary?
+        GET("1.1/users/show.json?screen_name=\(screenName)", parameters: nil, success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
             print("Success")
-            userRepsonse = response as! NSDictionary
-            //print(userRepsonse!)
-            completion(user: userRepsonse, error: nil)
+            userResponse = response as! NSDictionary
+            completion(user: User(dictionary: userResponse!), error: nil)
+            
             }) { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
                 print("Failed to get user")
                 completion(user: nil, error: error)
         }
     }
-    func composeTweet (text:String?) {
-        let urlwithPercentEscapes = text!.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-        POST("1.1/statuses/update.json?status=\(urlwithPercentEscapes)", parameters: nil, success: { (operation:NSURLSessionDataTask, response:AnyObject?) -> Void in
-            print("successfuly posted tweet")
-            }) { (operation:NSURLSessionDataTask?, error:NSError) -> Void in
-                print("failed to tweet")
-        }
+    func composeTweet (text: String!) {
+        let urlwithPercentEscapes = text!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        print(urlwithPercentEscapes)
+        POST("1.1/statuses/update.json?status=\(urlwithPercentEscapes!)", parameters: nil, success: { (operation:NSURLSessionDataTask?, response:AnyObject?) -> Void in
+            print("successfully posted tweet")
+            print(response)
+            }) { (operation:NSURLSessionDataTask?, error:NSError!) -> Void in
+                print("failed to post tweet")
+            }
+        
     }
-    
+    func replyTweet (text: String!, userID:String!) {
+        let urlwithPercentEscapes = text!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+        //print(urlwithPercentEscapes)
+        POST("1.1/statuses/update.json?status=\(urlwithPercentEscapes!)&in_reply_to_status_id=@\(userID)", parameters: nil, success: { (operation:NSURLSessionDataTask?, response:AnyObject?) -> Void in
+            print("successfully replyed tweet")
+            print(response)
+            }) { (operation:NSURLSessionDataTask?, error:NSError!) -> Void in
+                print("failed to reply to post tweet")
+        }
+        
+    }
 }

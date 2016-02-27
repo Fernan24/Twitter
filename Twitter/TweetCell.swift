@@ -25,7 +25,7 @@ class TweetCell: UITableViewCell {
             displayNameLabel.text = tweet.user?.name
             usernameLabel.text = "@\((tweet.user?.screenname)!)"
             tweetLabel.text = tweet.text
-            timeLabel.text = tweet.createdAtString
+            timeLabel.text = String(tweet.createdAt)
             let url = tweet.user?.profileImageUrl
             profileImage.setImageWithURL(NSURL(string: url!)!)
             retweetsLabel.text = String(tweet.retweetCount!)
@@ -35,10 +35,6 @@ class TweetCell: UITableViewCell {
     var retweeted = false
     var favorited = false
     
-    @IBAction func reply(sender: UIButton) {
-        
-        
-    }
     @IBAction func retweet(sender: UIButton) {
         if !retweeted {
             TwitterClient.sharedInstance.retweet(tweet.tweetID!)

@@ -16,6 +16,7 @@ class Tweet: NSObject {
     var tweetID:String?
     var retweetCount:Int?
     var favouriteCount:Int?
+    var elapsedTime:NSTimeInterval
     
     init(dictionary: NSDictionary) {
         user = User(dictionary: dictionary["user"]as! NSDictionary)
@@ -25,6 +26,7 @@ class Tweet: NSObject {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
         createdAt = formatter.dateFromString(createdAtString!)
+        elapsedTime = NSDate().timeIntervalSinceDate(createdAt!)
         tweetID = (dictionary["id_str"] as! String?)!
         retweetCount = Int((dictionary["retweet_count"] as! NSNumber?)!)
         favouriteCount = Int((dictionary["favorite_count"] as! NSNumber?)!)
