@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ProfileCell", forIndexPath: indexPath) as! TweetCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ProfileCell", forIndexPath: indexPath) as! ProfileCell
         
         cell.tweet = tweets![indexPath.row]
         
@@ -85,14 +85,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "profiledetail" {
+            let cell = sender as! ProfileCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let tweet = tweets![indexPath!.row]
+            let tweetdetailViewController = segue.destinationViewController as! TweetDetailsViewController
+            tweetdetailViewController.tweet = tweet
+        }
+        if segue.identifier == "profilereply" {
+            let button = sender as! UIButton
+            let buttonBounds = button.convertRect(button.bounds, toView: self.tableView)
+            if let indexPath = self.tableView.indexPathForRowAtPoint(buttonBounds.origin) {
+                let composeview = segue.destinationViewController as! TweetComposeViewController
+                let selectedRow = indexPath.row as NSInteger
+                composeview.replyhandle = tweets![selectedRow].user?.screenname
+            }
+        }
     }
-    */
-
 }
