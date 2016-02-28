@@ -307,11 +307,6 @@
                                                         <constraint firstAttribute="height" constant="30" id="VoU-kP-08K"/>
                                                     </constraints>
                                                     <state key="normal" title="reply" image="reply-action.png"/>
-                                                    <connections>
-                                                        <segue destination="Orr-7v-5V3" kind="popoverPresentation" popoverAnchorView="A8l-uj-Jvn" id="aqB-m5-GdI">
-                                                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                        </segue>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouU-Jb-nqN">
                                                     <rect key="frame" x="196" y="133" width="30" height="30"/>
@@ -359,11 +354,6 @@
                                                         <constraint firstAttribute="width" constant="80" id="7WA-ak-xuu"/>
                                                         <constraint firstAttribute="height" constant="79" id="emi-h5-4oy"/>
                                                     </constraints>
-                                                    <connections>
-                                                        <segue destination="pRV-Ct-Scl" kind="popoverPresentation" identifier="profile" popoverAnchorView="iZi-LS-p2i" id="dPO-2T-1Va">
-                                                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                        </segue>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -629,11 +619,6 @@
                                                                 <constraint firstAttribute="height" constant="30" id="rDF-bj-7PH"/>
                                                             </constraints>
                                                             <state key="normal" title="reply" image="reply-action.png"/>
-                                                            <connections>
-                                                                <segue destination="Orr-7v-5V3" kind="popoverPresentation" identifier="profilereply" popoverAnchorView="dZk-eD-fsu" id="Nef-li-hwq">
-                                                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                                </segue>
-                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ret#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ghk-0H-4Vt">
                                                             <rect key="frame" x="219" y="139" width="25" height="16"/>
@@ -730,6 +715,7 @@
                                     <constraint firstAttribute="bottom" secondItem="nzX-Cy-fpe" secondAttribute="bottom" constant="90" id="lOK-Ao-PUe"/>
                                     <constraint firstItem="nzX-Cy-fpe" firstAttribute="top" secondItem="OIH-HN-Myl" secondAttribute="bottom" constant="9" id="n5n-tb-ogL"/>
                                     <constraint firstItem="nzX-Cy-fpe" firstAttribute="top" secondItem="zIy-7L-Bcx" secondAttribute="bottom" constant="7" id="nHE-5W-U4l"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="a2z-VQ-tZJ" secondAttribute="trailing" constant="315" id="oWc-5B-Iql"/>
                                     <constraint firstItem="gha-Cw-xn2" firstAttribute="leading" secondItem="glI-iG-Nch" secondAttribute="leading" constant="20" id="p9B-FO-9ez"/>
                                     <constraint firstItem="SfT-33-RFo" firstAttribute="leading" secondItem="EcS-7m-ZDq" secondAttribute="trailing" constant="26" id="qbx-p3-cVQ"/>
                                     <constraint firstItem="gha-Cw-xn2" firstAttribute="top" secondItem="glI-iG-Nch" secondAttribute="top" constant="20" id="qye-Rh-c2R"/>
@@ -916,8 +902,7 @@
         <image name="retweet-action.png" width="75" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dPO-2T-1Va"/>
-        <segue reference="Nef-li-hwq"/>
         <segue reference="v7Q-sW-oSk"/>
+        <segue reference="KQk-kX-5gm"/>
     </inferredMetricsTieBreakers>
 </document>
