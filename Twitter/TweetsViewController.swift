@@ -87,11 +87,23 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             tweetdetailViewController.tweet = tweet
         }
         if segue.identifier == "reply" {
-            let cell = sender as! TweetCell
-            let indexPath = tableView.indexPathForCell(cell)
-            let tweet = tweets![indexPath!.row]
-            let tweetcomposeViewController = segue.destinationViewController as! TweetComposeViewController
-            tweetcomposeViewController.replyhandle = tweet.user?.screenname
+            let button = sender as! UIButton
+            let buttonBounds = button.convertRect(button.bounds, toView: self.tableView)
+            if let indexPath = self.tableView.indexPathForRowAtPoint(buttonBounds.origin) {
+                let composeview = segue.destinationViewController as! TweetComposeViewController
+                let selectedRow = indexPath.row as NSInteger
+                composeview.replyhandle = tweets[selectedRow].user?.screenname
+            }
+        }
+        if  segue.identifier == "profile" {
+            let button = sender as! UIButton
+            let buttonBounds = button.convertRect(button.bounds, toView: self.tableView)
+            if let indexPath = self.tableView.indexPathForRowAtPoint(buttonBounds.origin) {
+                let profileview = segue.destinationViewController as! ProfileViewController
+                let selectedRow = indexPath.row as NSInteger
+                profileview.username = tweets[selectedRow].user?.screenname
+            }
+            
         }
     }
 

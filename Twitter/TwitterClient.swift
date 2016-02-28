@@ -145,4 +145,17 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
         
     }
+    func userTimelineWithParams(params: NSDictionary?, userID:String!, completion: (tweet: [Tweet]?, error: NSError?)-> ()) {
+        GET("1.1/statuses/user_timeline.json?screen_name=\(userID)", parameters: params,
+            success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
+                let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+                completion(tweet: tweets, error: nil)
+            },
+            
+            failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("Failed to get the infomation")
+                completion(tweet: nil, error: error)
+        })
+        
+    }
 }
