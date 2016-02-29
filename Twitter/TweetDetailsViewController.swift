@@ -37,6 +37,7 @@ class TweetDetailsViewController: UIViewController {
             retweetCountLabel.text = String(tweet.retweetCount!)
         }
     }
+    
     @IBAction func favorite(sender: AnyObject) {
         if !favorited {
             TwitterClient.sharedInstance.favorited(tweet.tweetID!)

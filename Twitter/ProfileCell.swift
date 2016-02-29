@@ -25,7 +25,7 @@ class ProfileCell: UITableViewCell {
             displayNameLabel.text = tweet.user?.name
             usernameLabel.text = "@\((tweet.user?.screenname)!)"
             tweetLabel.text = tweet.text
-            timeLabel.text = String(tweet.createdAt)
+            timeLabel.text = String((tweet.createdAt)!)
             let url = tweet.user?.profileImageUrl
             profileImage.setImageWithURL(NSURL(string: url!)!)
             retweetsLabel.text = String(tweet.retweetCount!)

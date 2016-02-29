@@ -83,25 +83,19 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         //update the collection data source
         refreshControl.endRefreshing()
     }
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "profiledetail" {
+        if segue.identifier == "profiledetails" {
             let cell = sender as! ProfileCell
             let indexPath = tableView.indexPathForCell(cell)
             let tweet = tweets![indexPath!.row]
             let tweetdetailViewController = segue.destinationViewController as! TweetDetailsViewController
             tweetdetailViewController.tweet = tweet
         }
-        if segue.identifier == "profilereply" {
-            let button = sender as! UIButton
-            let buttonBounds = button.convertRect(button.bounds, toView: self.tableView)
-            if let indexPath = self.tableView.indexPathForRowAtPoint(buttonBounds.origin) {
-                let composeview = segue.destinationViewController as! TweetComposeViewController
-                let selectedRow = indexPath.row as NSInteger
-                composeview.replyhandle = tweets![selectedRow].user?.screenname
-            }
-        }
+        
     }
 }

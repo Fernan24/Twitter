@@ -53,6 +53,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             return 0
         }
     }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
@@ -86,25 +89,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             let tweetdetailViewController = segue.destinationViewController as! TweetDetailsViewController
             tweetdetailViewController.tweet = tweet
         }
-        if segue.identifier == "reply" {
-            let button = sender as! UIButton
-            let buttonBounds = button.convertRect(button.bounds, toView: self.tableView)
-            if let indexPath = self.tableView.indexPathForRowAtPoint(buttonBounds.origin) {
-                let composeview = segue.destinationViewController as! TweetComposeViewController
-                let selectedRow = indexPath.row as NSInteger
-                composeview.replyhandle = tweets[selectedRow].user?.screenname
-            }
-        }
-        if  segue.identifier == "profile" {
-            let button = sender as! UIButton
-            let buttonBounds = button.convertRect(button.bounds, toView: self.tableView)
-            if let indexPath = self.tableView.indexPathForRowAtPoint(buttonBounds.origin) {
-                let profileview = segue.destinationViewController as! ProfileViewController
-                let selectedRow = indexPath.row as NSInteger
-                profileview.username = tweets[selectedRow].user?.screenname
-            }
-            
-        }
+        
     }
 
 

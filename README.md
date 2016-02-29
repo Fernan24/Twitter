@@ -59,7 +59,7 @@ limitations under the License.
 
 # Project 5 - *Twitter*
 
-Time spent: **5** hours spent in total
+Time spent: **9** hours spent in total
 
 ## User Stories
 
@@ -76,7 +76,7 @@ The following **optional** features are implemented:
 
 - [x] When composing, you should have a countdown in the upper right for the tweet limit.
 - [ ] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
-- [ ] Profile Page
+- [x] Profile Page
 - [ ] Implement the paging view for the user description.
 - [ ] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
 - [ ] Pulling down the profile page should blur and resize the header image.
@@ -92,24 +92,24 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. 
-2. 
+1. Segues from buttons in cells to other views prooved to be a huge dificulty in the app development
+2. Reusing cells in other table views also was an unclear subject.
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src="http://i.imgur.com/OyfMsTL.gif" title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I was unable to finish all features because my app failed to compile when adding segues form button s ina table view cell to another view.
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright 2016 Fernando Rodriguez
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -43,7 +43,9 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         tweetTextView.delegate = self
         tweetTextView.becomeFirstResponder()
-        tweetTextView.text = "@\(replyhandle!) "
+        if (replyhandle != nil ){
+            tweetTextView.text = "@\(replyhandle!) "
+        }
         count=limitLength - tweetTextView.text.characters.count
         countLabel.text = String(count)
         displayNameLabel.text = (User.currentUser?.screenname)!
