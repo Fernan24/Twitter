@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogOut", name: userDidLogoutNotification, object: nil)
         if User.currentUser != nil {
             print("There's a user logged in")
-            let vc = storyboard.instantiateViewControllerWithIdentifier("TabsController") as UIViewController
+            let vc = storyboard.instantiateViewControllerWithIdentifier("NavigationController") as UIViewController
             
             window?.rootViewController = vc
         }

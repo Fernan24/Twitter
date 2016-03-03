@@ -8,7 +8,7 @@
 
 import UIKit
 import AFNetworking
-class TweetDetailsViewController: UIViewController, UITabBarControllerDelegate {
+class TweetDetailsViewController: UIViewController {
     
     var tweet:Tweet!
 
@@ -62,6 +62,7 @@ class TweetDetailsViewController: UIViewController, UITabBarControllerDelegate {
         favoriteCountLabel.text = String(tweet.favouriteCount!)
         profileImage.layer.cornerRadius = 5
         profileImage.clipsToBounds = true
+        
         // Do any additional setup after loading the view.
     }
 
@@ -69,12 +70,7 @@ class TweetDetailsViewController: UIViewController, UITabBarControllerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        if self.tabBarController?.selectedIndex == 1 {
-            let contorller = ProfileViewController()
-            contorller.username = _currentUser?.screenname
-        }
-    }
+    
     
 
     

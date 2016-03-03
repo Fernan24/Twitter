@@ -11,7 +11,7 @@ import DoneHUD
 
 
 
-class TweetComposeViewController: UIViewController, UITextViewDelegate, UITabBarControllerDelegate {
+class TweetComposeViewController: UIViewController, UITextViewDelegate {
     var replyhandle:String?
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var countLabel: UILabel!
@@ -53,6 +53,7 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate, UITabBar
         if(count<140){
             defaultTextLabel.hidden = true
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,12 +76,7 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate, UITabBar
             textField.deleteBackward()
         }
     }
-    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        if self.tabBarController?.selectedIndex == 1 {
-            let contorller = ProfileViewController()
-            contorller.username = _currentUser?.screenname
-        }
-    }
+   
     
 
     /*

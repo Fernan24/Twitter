@@ -8,9 +8,12 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UITabBarControllerDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBAction func profileClicked(sender: AnyObject) {
+        ProfileViewController().username = (_currentUser?.screenname)!
+    }
     var tweets:[Tweet]!
     var isMoreDataLoading = false
     override func viewDidLoad() {
@@ -75,14 +78,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         //update the collection data source
         refreshControl.endRefreshing()
     }
-    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        if self.tabBarController?.selectedIndex == 1 {
-            let contorller = ProfileViewController()
-            contorller.username = _currentUser?.screenname
-        }
-    }
         
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -100,7 +96,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             let buttonFrame = button.convertRect(button.bounds, toView: self.tableView)
             let indexPath = tableView.indexPathForRowAtPoint(buttonFrame.origin)
             let profileController = segue.destinationViewController as! ProfileViewController
-            profileController.username = tweets![indexPath!.row].user?.screenname
+            profileController.username = (tweets![indexPath!.row].user?.screenname)!
+        }
+        if segue.identifier == "currentuser" {
+            ProfileViewController().username = (_currentUser?.screenname)!
         }
         
     }

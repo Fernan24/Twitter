@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var username:String?
     @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
@@ -31,9 +31,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
-        
-    }
-    override func viewWillAppear(animated: Bool) {
         TwitterClient.sharedInstance.getUserData(username) { (user, error) -> () in
             self.userdata = user
             //print(self.userdata)
@@ -50,16 +47,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.tweets = tweets
             self.tableView.reloadData()
         }
+        
     }
+    
     override func viewDidDisappear(animated: Bool) {
         username = ""
     }
-    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        if self.tabBarController?.selectedIndex == 1 {
-            let contorller = ProfileViewController()
-            contorller.username = _currentUser?.screenname
-        }
-    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
