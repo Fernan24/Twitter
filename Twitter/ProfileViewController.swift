@@ -28,7 +28,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 150
-        username = "fernan2012dj"
+        //username = "fernan2012dj"
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
+        
+    }
+    override func viewWillAppear(animated: Bool) {
         TwitterClient.sharedInstance.getUserData(username) { (user, error) -> () in
             self.userdata = user
             //print(self.userdata)
@@ -45,11 +52,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.tweets = tweets
             self.tableView.reloadData()
         }
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
-        tableView.insertSubview(refreshControl, atIndex: 0)
-        
-        
+    }
+    override func viewDidDisappear(animated: Bool) {
+        username = ""
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UITabBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var tweets:[Tweet]!
@@ -75,6 +75,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         //update the collection data source
         refreshControl.endRefreshing()
     }
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        //This method will be called when user changes tab.
+        self.tabBarItem
+    }
         
     
     // MARK: - Navigation
@@ -88,6 +92,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             let tweet = tweets![indexPath!.row]
             let tweetdetailViewController = segue.destinationViewController as! TweetDetailsViewController
             tweetdetailViewController.tweet = tweet
+        }
+        if segue.identifier == "profileview" {
+            let button = sender as! UIButton
+            let indexPath = tableView.indexPathForRowAtPoint(button.bounds.origin)
+            let profileController = segue.destinationViewController as! ProfileViewController
+            profileController.username = tweets![indexPath!.row].user?.screenname
         }
         
     }
