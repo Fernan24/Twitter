@@ -99,6 +99,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             let controller = segue.destinationViewController as! ProfileViewController
             controller.username = _currentUser?.screenname
         }
+        if segue.identifier == "replyfromcell" {
+            let button = sender as! UIButton
+            let buttonFrame = button.convertRect(button.bounds, toView: self.tableView)
+            let indexPath = tableView.indexPathForRowAtPoint(buttonFrame.origin)
+            let composeController = segue.destinationViewController as! TweetComposeViewController
+            composeController.replyhandle = (tweets![indexPath!.row].user?.screenname)!
+        }
         
         
     }

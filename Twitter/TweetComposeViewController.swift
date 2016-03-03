@@ -54,6 +54,7 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
             defaultTextLabel.hidden = true
         }
         
+        
     }
 
     override func didReceiveMemoryWarning() {
