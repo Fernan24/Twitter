@@ -11,7 +11,7 @@ import DoneHUD
 
 
 
-class TweetComposeViewController: UIViewController, UITextViewDelegate {
+class TweetComposeViewController: UIViewController, UITextViewDelegate, UITabBarControllerDelegate {
     var replyhandle:String?
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var countLabel: UILabel!
@@ -73,6 +73,12 @@ class TweetComposeViewController: UIViewController, UITextViewDelegate {
     func checkMaxLength(textField: UITextView, maxLength: Int) {
         if textField.text?.characters.count > maxLength {
             textField.deleteBackward()
+        }
+    }
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        if self.tabBarController?.selectedIndex == 1 {
+            let contorller = ProfileViewController()
+            contorller.username = _currentUser?.screenname
         }
     }
     

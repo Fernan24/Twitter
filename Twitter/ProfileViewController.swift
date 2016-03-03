@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate {
     var username:String?
     @IBOutlet weak var bannerImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
@@ -28,8 +28,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 150
-        //username = "fernan2012dj"
-        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
@@ -55,6 +53,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func viewDidDisappear(animated: Bool) {
         username = ""
+    }
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        if self.tabBarController?.selectedIndex == 1 {
+            let contorller = ProfileViewController()
+            contorller.username = _currentUser?.screenname
+        }
     }
 
     override func didReceiveMemoryWarning() {

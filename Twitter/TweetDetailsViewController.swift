@@ -8,7 +8,7 @@
 
 import UIKit
 import AFNetworking
-class TweetDetailsViewController: UIViewController {
+class TweetDetailsViewController: UIViewController, UITabBarControllerDelegate {
     
     var tweet:Tweet!
 
@@ -68,6 +68,12 @@ class TweetDetailsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        if self.tabBarController?.selectedIndex == 1 {
+            let contorller = ProfileViewController()
+            contorller.username = _currentUser?.screenname
+        }
     }
     
 
