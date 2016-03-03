@@ -11,9 +11,6 @@ import UIKit
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBAction func profileClicked(sender: AnyObject) {
-        ProfileViewController().username = (_currentUser?.screenname)!
-    }
     var tweets:[Tweet]!
     var isMoreDataLoading = false
     override func viewDidLoad() {
@@ -98,9 +95,11 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             let profileController = segue.destinationViewController as! ProfileViewController
             profileController.username = (tweets![indexPath!.row].user?.screenname)!
         }
-        if segue.identifier == "currentuser" {
-            ProfileViewController().username = (_currentUser?.screenname)!
+        if segue.identifier == "currentUser" {
+            let controller = segue.destinationViewController as! ProfileViewController
+            controller.username = _currentUser?.screenname
         }
+        
         
     }
 

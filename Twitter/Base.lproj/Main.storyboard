@@ -428,10 +428,9 @@
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Me" id="GVK-aX-8YV">
+                            <barButtonItem title="Me" id="sU5-ZX-MnT">
                                 <connections>
-                                    <action selector="profileClicked:" destination="1Lc-Vr-on8" id="AuB-4Z-zrR"/>
-                                    <segue destination="pRV-Ct-Scl" kind="show" identifier="currentuser" id="TL9-dP-pfM"/>
+                                    <segue destination="pRV-Ct-Scl" kind="show" identifier="currentUser" id="ATM-P1-nTP"/>
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
@@ -941,8 +940,8 @@
         <image name="retweet-action.png" width="75" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QB3-il-3W0"/>
+        <segue reference="ATM-P1-nTP"/>
         <segue reference="KQk-kX-5gm"/>
-        <segue reference="TL9-dP-pfM"/>
+        <segue reference="QB3-il-3W0"/>
     </inferredMetricsTieBreakers>
 </document>
